@@ -2,7 +2,7 @@ NAME = ex01
 
 SRCS =	main.cpp
 
-HEADERS = iter.hpp
+HEADERS = Array.hpp
 
 OBJS = $(SRCS:%.cpp=%.o)
 
