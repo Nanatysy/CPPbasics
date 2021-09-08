@@ -7,8 +7,15 @@
 
 #include <iostream>
 
-template <typename T1, typename T2>
-void iter(T1 & array, int length, T2 & f)
+template <typename T1>
+void iter(T1* array, int length, void (*f)(const T1 &))
+{
+	for (int i = 0; i < length; i++)
+		f(array[i]);
+}
+
+template <typename T1>
+void iter(T1* array, int length, void (*f)(T1 &))
 {
 	for (int i = 0; i < length; i++)
 		f(array[i]);

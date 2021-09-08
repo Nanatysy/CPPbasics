@@ -35,7 +35,7 @@ public:
 	{
 			_array = new T[n];
 		for (unsigned int i = 0; i < n; i++)
-			_array[i] = 0;
+			_array[i] = T();
 	}
 
 	Array(const Array<T> & src)
