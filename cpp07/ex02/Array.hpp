@@ -33,7 +33,7 @@ public:
 
 	Array(unsigned int n) : _len(n)
 	{
-		_array = new T[n];
+			_array = new T[n];
 		for (unsigned int i = 0; i < n; i++)
 			_array[i] = 0;
 	}
@@ -64,8 +64,11 @@ public:
 		return (*this);
 	}
 
-	T& operator[](unsigned int index)
+	T& operator[](long int index)
 	{
+		if (index < 0)
+			throw Array<T>::IndexOutOfLimit();
+		index = static_cast<unsigned int>(index);
 		if (index >= _len)
 			throw Array<T>::IndexOutOfLimit();
 		return (_array[index]);

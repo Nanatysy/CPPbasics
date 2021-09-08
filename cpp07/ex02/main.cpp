@@ -76,7 +76,7 @@ int main(void)
 			std::cout << std::endl << "---------------------------"
 					  << std::endl;
 			std::cout << first[2] << std::endl;
-			std::cout << first[9] << std::endl;
+			std::cout << first[-1] << std::endl;
 		}
 		catch (std::exception &e)
 		{
