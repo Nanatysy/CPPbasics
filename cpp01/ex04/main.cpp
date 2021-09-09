@@ -46,6 +46,11 @@ int main(int argc, char **argv) {
 	file_name.assign(argv[1]);
 	file_name += ".replace";
 	ofs.open(file_name);
+	if (!ofs.is_open())
+	{
+		std::cerr << "File error" << std::endl;
+		return (1);
+	}
 	while (!ifs.eof())
 	{
 		std::getline(ifs, str);

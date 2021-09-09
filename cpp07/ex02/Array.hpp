@@ -64,11 +64,15 @@ public:
 		return (*this);
 	}
 
-	T& operator[](long int index)
+	T& operator[](size_t index)
 	{
-		if (index < 0)
+		if (index >= _len)
 			throw Array<T>::IndexOutOfLimit();
-		index = static_cast<unsigned int>(index);
+		return (_array[index]);
+	}
+
+	const T& operator[](size_t index) const
+	{
 		if (index >= _len)
 			throw Array<T>::IndexOutOfLimit();
 		return (_array[index]);
