@@ -12,7 +12,7 @@ typename T::iterator easyfind(T & src, int needle)
 {
 	typename T::iterator it;
 
-	it = std::find(std::begin(src), std::end(src), needle);
+	it = std::find(src.begin(), src.end(), needle);
 	if (it == std::end(src))
 		throw std::exception();
 	return (it);
