@@ -30,16 +30,21 @@ void Span::addNumber(const int & new_num)
 int Span::shortestSpan(void) const
 {
 	int first;
-	int second;
+	int min = INT_MAX;
 	std::multiset<int>::iterator it;
 
 	if (_array.empty() || _array.size() == 1)
 		throw Span::TooFewNumbers();
 	it = _array.begin();
 	first = *it;
-	it++;
-	second = *it;
-	return (second - first);
+	++it;
+	for ( ; it != _array.end(); ++it)
+	{
+		if (*it - first < min)
+			min = *it - first;
+		first = *it;
+	}
+	return (min);
 }
 
 int Span::longestSpan(void) const

@@ -8,57 +8,62 @@
 #include <stack>
 #include <iostream>
 
-template <typename T>
-class MutantStack : public std::stack<T>
+template <typename T, typename Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container >
 {
 public:
-	class iterator
-	{
-	private:
-		T *_ptr;
-	public:
-		iterator() : _ptr(nullptr) {}
-		iterator(T *data) : _ptr(data) {}
-		iterator(const iterator & src)
-		{
-			*this = src;
-		}
-		virtual ~iterator() {}
 
-		iterator &operator=(const iterator & src)
-		{
-			if (this == &src)
-				return (*this);
-			_ptr = src._ptr;
-			return (*this);
-		}
-		T &operator*() const
-		{
-			return (*_ptr);
-		}
-	};
+	typedef typename Container::iterator iterator;
+	typedef typename Container::const_iterator const_iterator;
+	typedef typename Container::reverse_iterator reverse_iterator;
+	typedef typename Container::const_reverse_iterator const_reverse_iterator;
 
 	MutantStack() : std::stack<T>() {}
 	MutantStack(const MutantStack<T> &src) : std::stack<T>(src) {}
 	virtual ~MutantStack() {};
 
-	MutantStack<T> &operator=(const MutantStack<T> & src)
+	MutantStack &operator=(const MutantStack<T> & src)
 	{
 		if (this == &src)
 			return (*this);
-		// copy
+
+		this->c.operator=(src);
 		return (*this);
 	}
 
-	MutantStack<T>::iterator begin()
+	typename MutantStack<T>::iterator begin()
 	{
-		return (MutantStack<T>::iterator(&this->top() - this->size() + 1));
+		return (this->c.begin());
 	}
-	MutantStack<T>::iterator end()
+	typename MutantStack<T>::const_iterator begin() const
 	{
-		return (MutantStack<T>::iterator(&this->top() + 1));
+		return (this->c.begin());
+	}
+	typename MutantStack<T>::reverse_iterator rbegin()
+	{
+		return (this->c.rbegin());
+	}
+	typename MutantStack<T>::const_reverse_iterator rbegin() const
+	{
+		return (this->c.rbegin());
 	}
 
+	typename MutantStack<T>::iterator end()
+	{
+		return (this->c.end());
+	}
+	typename MutantStack<T>::const_iterator end() const
+	{
+		return (this->c.end());
+	}
+	typename MutantStack<T>::reverse_iterator rend()
+	{
+		return (this->c.rend());
+	}
+	typename MutantStack<T>::const_reverse_iterator rend() const
+	{
+		return (this->c.rend());
+	}
 };
 
 #endif //CPP06_MUTANTSTACK_HPP
