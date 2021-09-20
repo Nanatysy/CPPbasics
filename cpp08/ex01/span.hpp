@@ -55,10 +55,7 @@ public:
 template<class T>
 void Span::addNumber(T first, T second)
 {
-	for (; first != second; ++first)
-	{
-		this->addNumber(*first);
-	}
+	_array.insert(first, second);
 }
 
 #endif //CPP06_SPAN_HPP
