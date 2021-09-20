@@ -99,7 +99,6 @@ int main(void)
 		}
 	}
 
-	std::cout << "Test for big capacity" << std::endl;
 	{
 		try
 		{

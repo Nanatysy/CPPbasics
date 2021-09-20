@@ -40,8 +40,7 @@ int Span::shortestSpan(void) const
 	++it;
 	for ( ; it != _array.end(); ++it)
 	{
-		if (*it - first < min)
-			min = *it - first;
+		min = std::min(min, *it - first);
 		first = *it;
 	}
 	return (min);
